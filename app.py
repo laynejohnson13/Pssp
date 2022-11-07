@@ -31,17 +31,17 @@ class Patients(db.Model):
     mrn = db.Column(db.String(255))
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
-    date_of_birth = db.Column(db.String(255))
+    dob = db.Column(db.String(255))
     insurance_provider = db.Column(db.String(255))
-    contact_information = db.Column(db.String(255))
+    contact_mobile = db.Column(db.String(255))
     # this first function __init__ is to establish the class for python GUI
     def __init__(self, mrn, first_name, last_name):
         self.mrn = mrn
         self.first_name = first_name
         self.last_name = last_name
-        self.date_of_birth = date_of_birth
-        self.insurance_provider = insurance_provider
-        self.contact_information = contact_information
+        self.dob = dob
+        self.gender = gender
+        self.contact_mobile = contact_mobile
     # this second function is for the API endpoints to return JSON 
     def to_json(self):
         return {
