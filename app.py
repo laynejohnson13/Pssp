@@ -39,9 +39,9 @@ class Patients(db.Model):
         self.mrn = mrn
         self.first_name = first_name
         self.last_name = last_name
-        self.dob = dob
-        self.gender = gender
-        self.contact_mobile = contact_mobile
+        #self.dob = dob
+        #self.gender = gender
+        #self.contact_mobile = contact_mobile
     # this second function is for the API endpoints to return JSON 
     def to_json(self):
         return {
@@ -49,9 +49,9 @@ class Patients(db.Model):
             'mrn': self.mrn,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            'date_of_birth': self.date_of_birth,
-            'insurance_provider': self.insurance_provider,
-            'contact_information': self.contact_information
+            #'date_of_birth': self.date_of_birth,
+            #'insurance_provider': self.insurance_provider,
+            #'contact_information': self.contact_information
         }
 
 
