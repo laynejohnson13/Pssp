@@ -48,9 +48,9 @@ class Patients(db.Model):
             'id': self.id,
             'mrn': self.mrn,
             'first_name': self.first_name,
-            'last_name': self.last_name
-            'date_of_birth': self.date_of_birth
-            'insurance_provider': self.insurance_provider
+            'last_name': self.last_name,
+            'date_of_birth': self.date_of_birth,
+            'insurance_provider': self.insurance_provider,
             'contact_information': self.contact_information
         }
 
