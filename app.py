@@ -203,6 +203,61 @@ def insert(): # note this function needs to match name in html form action
         flash("Something went wrong")
         return redirect(url_for('get_gui_patients'))
 
+# this endpoint is for updating our patients basic info 
+@app.route('/update', methods = ['GET', 'POST'])
+def update(): # note this function needs to match name in html form action
+    if request.method == 'POST':
+        ## get mrn from form
+        form_mrn = request.form.get('mrn')
+        patient = Patients.query.filter_by(mrn=form_mrn).first()
+        patient.first_name = request.form.get('first_name')
+        patient.last_name = request.form.get('last_name')
+        patient.gender = request.form.get('gender')
+        db.session.commit()
+        flash("Patient Updated Successfully")
+        return redirect(url_for('get_gui_patients'))
+
+#This route is for deleting our patients
+@app.route('/delete/<string:mrn>', methods = ['GET', 'POST'])
+def delete(mrn): # note this function needs to match name in html form action
+    patient = Patients.query.filter_by(mrn=mrn).first()
+    print('Found patient: ', patient)
+    db.session.delete(patient)
+    db.session.commit()
+    flash("Patient Deleted Successfully")
+    return redirect(url_for('get_gui_patients'))
+
+
+#This route is for getting patient details
+@app.route('/details/<string:mrn>', methods = ['GET'])
+def get_patient_details(mrn):
+    patient_details = Patients.query.filter_by(mrn=mrn).first()
+    patient_conditions = Conditions_patient.query.filter_by(mrn=mrn).all()
+    patient_medications = Medications_patient.query.filter_by(mrn=mrn).all()
+    db_conditions = Conditions.query.all()
+    db_medications = Medications.query.all()
+    return render_template("patient_details.html", patient_details = patient_details, 
+        patient_conditions = patient_conditions, patient_medications = patient_medications,
+        db_conditions = db_conditions, db_medications = db_medications)
+
+
+# this endpoint is for updating ONE patient condition
+@app.route('/update_conditions', methods = ['GET', 'POST'])
+def update_conditions(): # note this function needs to match name in html form action
+    if request.method == 'POST':
+        ## get mrn from form
+        form_id = request.form.get('id')
+        print('form_id', form_id)
+        form_icd10_code = request.form.get('icd10_code')
+        print('form_icd10_code', form_icd10_code)
+        patient_condition = Conditions_patient.query.filter_by(id=form_id).first()
+        print('patient_condition', patient_condition)
+        patient_condition.icd10_code = request.form.get('icd10_code')
+        db.session.commit()
+        flash("Patient Condition Updated Successfully")
+        ## then return to patient details page
+        return redirect(url_for('get_patient_details', mrn=patient_condition.mrn))
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=80)
