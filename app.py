@@ -33,7 +33,7 @@ class Patients(db.Model):
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
     dob = db.Column(db.String(255))
-    insurance_provider = db.Column(db.String(255))
+    gender = db.Column(db.String(255))
     contact_mobile = db.Column(db.String(255))
     # this first function __init__ is to establish the class for python GUI
     def __init__(self, mrn, first_name, last_name):
@@ -50,9 +50,9 @@ class Patients(db.Model):
             'mrn': self.mrn,
             'first_name': self.first_name,
             'last_name': self.last_name,
-            #'date_of_birth': self.date_of_birth,
-            #'insurance_provider': self.insurance_provider,
-            #'contact_information': self.contact_information
+            'date_of_birth': self.dob,
+            'gender': self.gender,
+            'contact_mobile': self.contact_mobile
         }
 
 
