@@ -77,7 +77,7 @@
                                 <h4 class="modal-title">Update Information</h4>
                             </div>
                             <div class="modal-body">
-                                <form action="{{url_for('update')}}" method="POST">
+                                <form action="{{url_for('get_gui_patients')}}" method="POST">
                                 <div class="form-group">
                                     <label for="mrn">MRN</label>
                                     <input type="text" class="form-control" name="mrn" value="{{row.mrn}}" readonly>
