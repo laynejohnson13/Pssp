@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 # load python-dotenv
 from dotenv import load_dotenv
 import os
+import sqlite3
 
 load_dotenv()
 
@@ -39,9 +40,9 @@ class Patients(db.Model):
         self.mrn = mrn
         self.first_name = first_name
         self.last_name = last_name
-        #self.dob = dob
-        #self.gender = gender
-        #self.contact_mobile = contact_mobile
+        self.dob = dob
+        self.gender = gender
+        self.contact_mobile = contact_mobile
     # this second function is for the API endpoints to return JSON 
     def to_json(self):
         return {
