@@ -194,8 +194,7 @@ def insert(): # note this function needs to match name in html form action
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         gender = request.form['gender']
-        zip_code = request.form['zip_code']
-        new_patient = Patients(mrn, first_name, last_name, gender, zip_code)
+        new_patient = Patients(mrn, first_name, last_name, gender)
         db.session.add(new_patient)
         db.session.commit()
         flash("Patient Inserted Successfully")
