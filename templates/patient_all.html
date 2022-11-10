@@ -42,7 +42,8 @@
                         <th>MRN</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Zip Code</th>
+                        <th>Date of Birth</th>
+                        <th>Mobile Contact Number</th>
                         <th>Gender</th>
                         <th>Setting</th>
 
@@ -55,7 +56,8 @@
                         <td>{{row.mrn}}</td>
                         <td>{{row.first_name}}</td>
                         <td>{{row.last_name}}</td>
-                        <td>{{row.zip_code}} </td>
+                        <td>{{row.dob}}</td>
+                        <td>{{row.contact_mobile</td>
                         <td>{{row.gender}}</td>
                         <td>
                             <a href="/update/{{row.mrn}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.mrn}}">Edit</a>
@@ -93,6 +95,10 @@
                                 <div class="form-group">
                                     <label>Gender:</label>
                                     <input type="text" class="form-control" name="gender" value="{{row.gender}}">
+                                </div>
+                                <div class="form-group">
+                                    <label>Mobile Phone Number:</label>
+                                    <input type="text" class="form-control" name="contact_mobile" value="{{row.contact_mobile}}">
                                 </div> 
                                 <div class="form-group">
                                     <button class="btn btn-primary" type="submit">Update</button>
@@ -142,8 +148,12 @@
                                 <input type="text" class="form-control" name="last_name" required="1">
                             </div>
                             <div class="form-group">
-                                <label>Zip Code </label>
-                                <input type="text" class="form-control" name="zip_code" required="1">
+                                <label>Date of Birth: </label>
+                                <input type="text" class="form-control" name="dob" required="1">
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile Phone Number: </label>
+                                <input type="text" class="form-control" name="contact_mobile" required="1">
                             </div>
                             <div class="form-group">
                                 <label> Gender </label>
