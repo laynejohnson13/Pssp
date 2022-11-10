@@ -36,7 +36,7 @@ class Patients(db.Model):
     gender = db.Column(db.String(255))
     contact_mobile = db.Column(db.String(255))
     # this first function __init__ is to establish the class for python GUI
-    def __init__(self, mrn, first_name, last_name):
+    def __init__(self, mrn, first_name, last_name, dob, gender, contact_mobile):
         self.mrn = mrn
         self.first_name = first_name
         self.last_name = last_name
