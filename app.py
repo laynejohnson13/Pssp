@@ -193,8 +193,10 @@ def insert(): # note this function needs to match name in html form action
         mrn = request.form['mrn']
         first_name = request.form['first_name']
         last_name = request.form['last_name']
+        dob = request.form['dob']
         gender = request.form['gender']
-        new_patient = Patients(mrn, first_name, last_name, gender)
+        contact_mobile = request.form['contact_mobile']
+        new_patient = Patients(mrn, first_name, last_name, gender, contact_mobile)
         db.session.add(new_patient)
         db.session.commit()
         flash("Patient Inserted Successfully")
@@ -213,6 +215,7 @@ def update(): # note this function needs to match name in html form action
         patient.first_name = request.form.get('first_name')
         patient.last_name = request.form.get('last_name')
         patient.gender = request.form.get('gender')
+        patient.contact_mobile = request.form.get('contact_mobile')
         db.session.commit()
         flash("Patient Updated Successfully")
         return redirect(url_for('get_gui_patients'))
