@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 # load python-dotenv
 from dotenv import load_dotenv
 import os
-import sqlite3
+import pymysql
 
 load_dotenv()
 
@@ -15,7 +15,7 @@ GCP_MYSQL_DATABASE = os.getenv('GCP_MYSQL_DATABASE')
 db = SQLAlchemy()
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqldb://' + GCP_MYSQL_USER+ ':' + GCP_MYSQL_PASSWORD + '@' + GCP_MYSQL_HOSTNAME + ':3306/patient_portal'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://' + GCP_MYSQL_USER+ ':' + GCP_MYSQL_PASSWORD + '@' + GCP_MYSQL_HOSTNAME + ':3306/patient_portal'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = '87378742'
 
@@ -206,4 +206,4 @@ def insert(): # note this function needs to match name in html form action
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    app.run(debug=True, host='0.0.0.0', port=80)
