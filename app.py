@@ -7,6 +7,7 @@ import pymysql
 
 load_dotenv()
 
+###make sure to create env in VM 
 GCP_MYSQL_HOSTNAME = os.getenv('GCP_MYSQL_HOSTNAME')
 GCP_MYSQL_USER = os.getenv('GCP_MYSQL_USER')
 GCP_MYSQL_PASSWORD = os.getenv('GCP_MYSQL_PASSWORD')
