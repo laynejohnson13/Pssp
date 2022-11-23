@@ -222,10 +222,6 @@ def signin():
 
 
 ## CREATE ROUTES 
-@app.route('/')
-def index():
-    return render_template('landing.html')
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -303,26 +299,20 @@ def register_admin():
 
 @app.route('/register/patient', methods=['GET', 'POST'])
 def register_patient():
-
     db_conditions = Conditions.query.all()
     db_medications = Medications.query.all()
-
     print('count of conditions loaded: ', len(db_conditions))
     print('count of medications loaded: ', len(db_medications))
-
     # Output message if something goes wrong...
     msg = ''
     # Check if "username", "password" and "email" POST requests exist (user submitted form)
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:
-        
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form:    
         mrn = str(uuid.uuid4())[:8]
         account_type = 'patient'
-
         # Fields to capture for account table
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
-
         ## Fields to capture for patient table 
         first_name = request.form['first_name']
         last_name = request.form['last_name']
@@ -331,11 +321,9 @@ def register_patient():
         gender = request.form['gender']
         contact_mobile = request.form['contact_mobile']
         contact_home = request.form['contact_home']
-
         ## Fields to capture patient conditions
         pt_conditions = request.form.getlist('conditions')
         print('pt_conditions: ', pt_conditions)
-
         ## check if email already exists in account table or contact_mobile already exists in patient table
         account = Users.query.filter_by(email=email).first()
         patient = Patients.query.filter_by(contact_mobile=contact_mobile).first()
@@ -344,21 +332,17 @@ def register_patient():
         else:
             datecreated = datetime.datetime.now()
             lastlogin = datetime.datetime.now()
-            
             new_user = Users(username, password, email, account_type, mrn, datecreated, lastlogin)
             new_patient = Patients(mrn, first_name, last_name, zip_code, dob, gender, contact_mobile, contact_home)
-
             db.session.add(new_user)
             db.session.commit()
             db.session.add(new_patient)
             db.session.commit()
-
             ## then loop through each condition and add to patient_conditions table after patient has been added to pt table
             for condition in pt_conditions:
                 new_patient_condition = Conditions_patient(mrn, condition)
                 db.session.add(new_patient_condition)
                 db.session.commit()
-
             msg = 'You have successfully registered a PATIENT account !'
     elif request.method == 'POST':
         # Form is empty... (no POST data)
@@ -395,16 +379,6 @@ def logout():
    session.pop('id', None)
    session.pop('username', None)
    return redirect(url_for('login'))
-
-
-
-
-
-
-
-
-
-
 
 
 
